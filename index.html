@@ -15,6 +15,8 @@
 .title{margin:0;font-size:clamp(100px,23vw,236px);line-height:.69;letter-spacing:-.105em;font-weight:900;text-transform:uppercase}
 .title .line{display:block}.title .line:first-child{font-family:var(--sans);font-weight:900}.title .line:nth-child(2){font:italic .72em/.78 var(--serif);letter-spacing:-.08em}.title .line:last-child{font-family:var(--serif);font-weight:600;letter-spacing:-.09em}
 .pixel{display:inline-block;font-family:var(--mono);font-weight:500;letter-spacing:-.13em;text-shadow:2px 0 var(--paper),4px 0 var(--ink);transform:translateY(-.025em);clip-path:polygon(0 0,100% 0,100% 36%,88% 36%,88% 47%,100% 47%,100% 100%,0 100%,0 69%,10% 69%,10% 58%,0 58%)}
+.mix{display:inline-block;font-family:var(--serif);font-style:italic;font-weight:600;letter-spacing:-.08em;transform:translateY(-.035em) rotate(-3deg)}
+.mix.pixel{font-family:var(--mono);font-style:normal;font-weight:400;letter-spacing:-.12em;transform:translateY(-.02em);text-shadow:2px 0 var(--paper),4px 0 var(--ink)}
 .tagline{margin:clamp(34px,7vh,62px) 0 0;font:500 11px var(--mono);letter-spacing:.16em}
 .action{margin-top:clamp(34px,6vh,58px);margin-bottom:0;background:transparent;border:1px solid var(--ink);border-radius:0;padding:15px 24px;font:500 11px var(--mono);letter-spacing:.13em;cursor:pointer;transition:background .18s,color .18s,transform .18s}
 .action:hover,.action:focus-visible{background:var(--ink);color:var(--paper);outline:none}.action:active{transform:scale(.97)}
@@ -32,19 +34,22 @@
  <section class="screen opening" aria-labelledby="opening-title">
   <p class="eyebrow">PITCH / PEER CHALLENGE</p>
   <h1 class="title" id="opening-title"><span class="line">DR<span class="pixel">A</span>W</span><span class="line">A</span><span class="line">ROLE</span></h1>
+  <p class="tagline">ONE ROLE. ONE PERSPECTIVE.</p>
   <button class="action" id="start" type="button">[ START DRAWING ]</button>
  </section>
 </main>
 <script>
 const roles=[
- {name:['CONCEPT','EXPLORER'],description:'Focus on the idea, creative intention and meaning behind the project.',style:'concept'},
- {name:['TECHNICAL','DETECTIVE'],description:'Think about the sensors, components and technical possibilities.',style:'technical'},
- {name:['INTERACTION','DESIGNER'],description:'Consider the audience, interaction and overall experience.',style:'audience'},
- {name:['WILD','CARD'],description:'Challenge assumptions and imagine unexpected possibilities.',style:'wild'}
+ {name:['CONCEPT','EXPLORER'],description:'Focus on the idea, creative intention and meaning behind the project.',keywords:'IDEA / INTENTION / MEANING',style:'concept'},
+ {name:['TECHNICAL','DETECTIVE'],description:'Think about the sensors, components and technical possibilities.',keywords:'SENSORS / COMPONENTS / SYSTEM',style:'technical'},
+ {name:['AUDIENCE','GUIDE'],description:'Consider the audience, interaction and overall experience.',keywords:'AUDIENCE / INTERACTION / EXPERIENCE',style:'audience'},
+ {name:['WILD','CARD'],description:'Challenge assumptions and imagine unexpected possibilities.',keywords:'EXPERIMENT / SURPRISE / WHAT IF',style:'wild'}
 ];
 const app=document.querySelector('#app');let previous=-1;
-function draw(){let i;do{i=Math.floor(Math.random()*roles.length)}while(i===previous);previous=i;const r=roles[i];app.innerHTML=`<section class="screen result"><p class="eyebrow">YOUR ROLE</p><h1 class="role-title" data-role="${r.style}">${r.name.map(w=>`<span class="word">${w}</span>`).join('')}</h1><p class="description">${r.description}</p><button class="action" id="back" type="button">[ BACK TO START ]</button></section>`;document.querySelector('#back').addEventListener('click',home)}
-function home(){app.innerHTML=`<section class="screen opening" aria-labelledby="opening-title"><p class="eyebrow">PITCH / PEER CHALLENGE</p><h1 class="title" id="opening-title"><span class="line">DR<span class="pixel">A</span>W</span><span class="line">A</span><span class="line">ROLE</span></h1><p class="tagline">ONE ROLE. ONE PERSPECTIVE.</p><button class="action" id="start" type="button">[ START DRAWING ]</button></section>`;document.querySelector('#start').addEventListener('click',draw)}
+function expressive(word){let chosen=-1;if(word.length>2&&Math.random()<.8)chosen=1+Math.floor(Math.random()*(word.length-2));return [...word].map((c,i)=>i===chosen?`<span class="mix${Math.random()<.38?' pixel':''}">${c}</span>`:c).join('')}
+function openingTitle(){return `<span class="line">DR<span class="pixel">A</span>${expressive('W')}</span><span class="line">A</span><span class="line">${[...'ROLE'].map((c,i)=>i===2?`<span class="mix">${c}</span>`:c).join('')}</span>`}
+function draw(){let i;do{i=Math.floor(Math.random()*roles.length)}while(i===previous);previous=i;const r=roles[i];app.innerHTML=`<section class="screen result"><p class="eyebrow">YOUR ROLE</p><h1 class="role-title" data-role="${r.style}">${r.name.map(w=>`<span class="word">${expressive(w)}</span>`).join('')}</h1><p class="description">${r.description}</p><button class="action" id="back" type="button">[ BACK TO START ]</button></section>`;document.querySelector('#back').addEventListener('click',home)}
+function home(){app.innerHTML=`<section class="screen opening" aria-labelledby="opening-title"><p class="eyebrow">PITCH / PEER CHALLENGE</p><h1 class="title" id="opening-title">${openingTitle()}</h1><p class="tagline">ONE ROLE. ONE PERSPECTIVE.</p><button class="action" id="start" type="button">[ START DRAWING ]</button></section>`;document.querySelector('#start').addEventListener('click',draw)}
 document.querySelector('#start').addEventListener('click',draw);
 </script>
 </body>
