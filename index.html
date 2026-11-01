@@ -43,10 +43,10 @@
 </main>
 <script>
 const roles=[
- {name:['CONCEPT','EXPLORER'],description:'Focus on the idea, creative intention and meaning behind the project.',keywords:'IDEA / INTENTION / MEANING',style:'concept'},
- {name:['TECHNICAL','DETECTIVE'],description:'Think about the sensors, components and technical possibilities.',keywords:'SENSORS / COMPONENTS / SYSTEM',style:'technical'},
- {name:['AUDIENCE','GUIDE'],description:'Consider the audience, interaction and overall experience.',keywords:'AUDIENCE / INTERACTION / EXPERIENCE',style:'audience'},
- {name:['WILD','CARD'],description:'Challenge assumptions and imagine unexpected possibilities.',keywords:'EXPERIMENT / SURPRISE / WHAT IF',style:'wild'}
+ {name:['CONCEPT','EXPLORER'],description:'Focus on the idea, creative intention and meaning behind the project.',style:'concept'},
+ {name:['TECHNICAL','DETECTIVE'],description:'Think about the sensors, components and technical possibilities.',style:'technical'},
+ {name:['INTERACTION','DESIGNER'],description:'Consider the audience, interaction and overall experience.',style:'audience'},
+ {name:['WILD','CARD'],description:'Challenge assumptions and imagine unexpected possibilities.',style:'wild'}
 ];
 const app=document.querySelector('#app');let previous=-1;
 function expressive(word){let chosen=-1;if(word.length>2&&Math.random()<.8)chosen=1+Math.floor(Math.random()*(word.length-2));return [...word].map((c,i)=>i===chosen?`<span class="mix${Math.random()<.38?' pixel':''}">${c}</span>`:c).join('')}
