@@ -38,10 +38,10 @@
 </main>
 <script>
 const roles=[
- {name:['CONCEPT','EXPLORER'],description:'Focus on the idea, creative intention and meaning behind the project.',style:'concept'},
- {name:['TECHNICAL','DETECTIVE'],description:'Think about the sensors, components and technical possibilities.',style:'technical'},
- {name:['AUDIENCE','GUIDE'],description:'Consider the audience, interaction and overall experience.',style:'audience'},
- {name:['WILD','CARD'],description:'Challenge assumptions and imagine unexpected possibilities.',style:'wild'}
+ {name:['CONCEPT','EXPLORER'],description:'Focus on the idea, creative intention and meaning behind the project.',keywords:'IDEA / INTENTION / MEANING',style:'concept'},
+ {name:['TECHNICAL','DETECTIVE'],description:'Think about the sensors, components and technical possibilities.',keywords:'SENSORS / COMPONENTS / SYSTEM',style:'technical'},
+ {name:['AUDIENCE','GUIDE'],description:'Consider the audience, interaction and overall experience.',keywords:'AUDIENCE / INTERACTION / EXPERIENCE',style:'audience'},
+ {name:['WILD','CARD'],description:'Challenge assumptions and imagine unexpected possibilities.',keywords:'EXPERIMENT / SURPRISE / WHAT IF',style:'wild'}
 ];
 const app=document.querySelector('#app');let previous=-1;
 function draw(){let i;do{i=Math.floor(Math.random()*roles.length)}while(i===previous);previous=i;const r=roles[i];app.innerHTML=`<section class="screen result"><p class="eyebrow">YOUR ROLE</p><h1 class="role-title" data-role="${r.style}">${r.name.map(w=>`<span class="word">${w}</span>`).join('')}</h1><p class="description">${r.description}</p><button class="action" id="back" type="button">[ BACK TO START ]</button></section>`;document.querySelector('#back').addEventListener('click',home)}
