@@ -10,19 +10,19 @@
 :root{--ink:#090909;--paper:#fff;--mono:'DM Mono',monospace;--sans:'DM Sans',Arial,sans-serif;--serif:'Playfair Display',Georgia,serif}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}body{font-family:var(--sans)}button{font:inherit;color:inherit}
 .poster{position:relative;min-height:100svh;display:grid;place-items:center;padding:30px 20px;overflow:hidden;text-align:center}
-.screen{width:min(100%,760px);min-height:min(850px,calc(100svh - 60px));display:flex;flex-direction:column;align-items:center;justify-content:center;animation:arrive .55s cubic-bezier(.2,.7,.2,1) both}
+.screen{width:min(100%,760px);min-height:calc(100svh - 60px);display:flex;flex-direction:column;align-items:center;justify-content:center;animation:arrive .55s cubic-bezier(.2,.7,.2,1) both}
 .eyebrow{font:500 11px var(--mono);letter-spacing:.18em;text-transform:uppercase;margin:0 0 clamp(28px,6vh,58px)}
 .title{margin:0;font-size:clamp(100px,23vw,236px);line-height:.69;letter-spacing:-.105em;font-weight:900;text-transform:uppercase}
 .title .line{display:block}.title .line:first-child{font-family:var(--sans);font-weight:900}.title .line:nth-child(2){font:italic .72em/.78 var(--serif);letter-spacing:-.08em}.title .line:last-child{font-family:var(--serif);font-weight:600;letter-spacing:-.09em}
 .pixel{display:inline-block;font-family:var(--mono);font-weight:500;letter-spacing:-.13em;text-shadow:2px 0 var(--paper),4px 0 var(--ink);transform:translateY(-.025em);clip-path:polygon(0 0,100% 0,100% 36%,88% 36%,88% 47%,100% 47%,100% 100%,0 100%,0 69%,10% 69%,10% 58%,0 58%)}
 .tagline{margin:clamp(34px,7vh,62px) 0 0;font:500 11px var(--mono);letter-spacing:.16em}
-.action{margin-top:auto;margin-bottom:clamp(4px,3vh,28px);background:transparent;border:1px solid var(--ink);border-radius:0;padding:15px 24px;font:500 11px var(--mono);letter-spacing:.13em;cursor:pointer;transition:background .18s,color .18s,transform .18s}
+.action{margin-top:clamp(34px,6vh,58px);margin-bottom:0;background:transparent;border:1px solid var(--ink);border-radius:0;padding:15px 24px;font:500 11px var(--mono);letter-spacing:.13em;cursor:pointer;transition:background .18s,color .18s,transform .18s}
 .action:hover,.action:focus-visible{background:var(--ink);color:var(--paper);outline:none}.action:active{transform:scale(.97)}
 .result .eyebrow{margin-bottom:clamp(28px,7vh,64px)}.role-title{font-size:clamp(57px,14vw,138px);line-height:.79;letter-spacing:-.095em;font-weight:900;text-transform:uppercase;max-width:100%;margin:0}.role-title .word{display:block}.role-title[data-role="concept"] .word:first-child{font-family:var(--serif);font-style:italic;font-weight:600}.role-title[data-role="technical"] .word:last-child{font-family:var(--mono);font-weight:400;letter-spacing:-.13em}.role-title[data-role="audience"] .word:first-child{font-family:var(--serif);font-weight:600}.role-title[data-role="wild"] .word:first-child{font-family:var(--mono);font-weight:400;letter-spacing:-.11em}.role-title[data-role="wild"] .word:last-child{font-family:var(--serif);font-style:italic;font-weight:600}
 .description{max-width:34em;margin:clamp(30px,6vh,52px) auto 0;font:400 clamp(14px,3.6vw,17px)/1.5 var(--sans)}.keywords{display:none}
-.result .action{margin-top:auto}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.result .action{margin-top:clamp(34px,6vh,58px)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @keyframes arrive{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
-@media(min-width:700px){.screen{min-height:min(900px,calc(100svh - 80px))}.title{font-size:clamp(200px,21vw,278px)}.result .screen{width:min(100%,900px)}}
+@media(min-width:700px){.screen{min-height:calc(100svh - 80px)}.title{font-size:clamp(200px,21vw,278px)}.result .screen{width:min(100%,900px)}}
 @media(max-height:650px){.screen{min-height:calc(100svh - 40px)}.eyebrow{margin-bottom:22px}.title{font-size:clamp(88px,19vh,150px)}.tagline{margin-top:22px}.action{margin-top:24px}.result .eyebrow{margin-bottom:24px}.role-title{font-size:clamp(54px,14vh,100px)}.description{margin-top:22px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
@@ -50,4 +50,5 @@ document.querySelector('#start').addEventListener('click',draw);
 </script>
 </body>
 </html>
+
 
